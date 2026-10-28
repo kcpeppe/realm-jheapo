@@ -658,7 +658,9 @@
   addEventListener('keydown', function (e) { if (e.key === 'm' && !/input|textarea/i.test(e.target.tagName)) { $('mine').click(); } });
   addEventListener('hashchange', route);
   try { if (localStorage.getItem('heap-lens.mine')) { $('mine').checked = true; state.mine = true; } } catch (e) {}
-  try { state.jar = localStorage.getItem('heap-lens.jar') || ''; } catch (e) {}
+  // TEMPORARY, for testing against the tipsdb dump: a default jar until the app can list the world's jars.
+  var DEFAULT_JAR = 'jars/tipsdb.jar';
+  try { state.jar = localStorage.getItem('heap-lens.jar') || DEFAULT_JAR; } catch (e) { state.jar = DEFAULT_JAR; }
   $('jar').value = state.jar;
   $('jar').onchange = function () {
     state.jar = $('jar').value.trim();
